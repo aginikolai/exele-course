@@ -5,7 +5,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
-const isDev = !isProd;
+const isDev = true;
 
 const fileName = (ext) => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`;
 
@@ -15,6 +15,7 @@ const jsLoaders = () => {
       loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-proposal-class-properties']
       }
     }];
   if (isDev) {
@@ -68,7 +69,13 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // hmr: isDev,
+              // reloadAll: true
+            }
+          },
           'css-loader',
           'sass-loader'
         ],
@@ -79,7 +86,8 @@ module.exports = {
         use: [{
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties']
           }
         }]
       }

@@ -25,6 +25,7 @@
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
@@ -47,6 +48,7 @@
     "copy-webpack-plugin": "^7.0.0",
     "css": "^3.0.0",
     "css-loader": "^5.0.1",
-    "loader": "^2.1.1"
+    "loader": "^2.1.1",
+    "normalize.css": "^8.0.1"
   }
 }
