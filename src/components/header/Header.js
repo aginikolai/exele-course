@@ -1,7 +1,9 @@
-import {ExcelComponent} from "@core/ExcelComponent";
+/* eslint-disable require-jsdoc */
+import {ExcelComponent} from '@core/ExcelComponent'
 
-export class Header extends ExcelComponent{
-  static className = 'excel_header'
+export class Header extends ExcelComponent {
+  static className = 'excel__header'
+
   toHTML() {
     return `
       <input type="text" class="input" value="Новая таблица" />
@@ -17,6 +19,6 @@ export class Header extends ExcelComponent{
         </div>
 
       </div>
-    `;
+    `
   }
 }
