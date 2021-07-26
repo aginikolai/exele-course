@@ -26,10 +26,25 @@ function createCol(col, index) {
   `
 }
 
-function createCell(_, col) {
-  return `
-    <div class="cell" contenteditable data-col=${col}></div>
-  `
+// function createCell(row, col) {
+//   return `
+//     <div class="cell" contenteditable data-col=${col} data-row=${row}></div>
+//   `
+// }
+
+function toCell(row) {
+  return function(_, col) {
+    return `
+      <div 
+      class="cell" 
+      contenteditable 
+      data-col=${col} 
+      data-row=${row} 
+      data-type="cell"
+      data-id="${row}:${col}"
+      ></div>
+   `
+  }
 }
 
 function toChar(_, index) {
@@ -46,7 +61,11 @@ export function createTable(rowsCount = 15) {
   rows.push(createRow(null, cols))
 
   for (let i = 0; i < rowsCount; i++) {
-    const cells = new Array(colsCount).fill('').map(createCell).join('')
+    const cells = new Array(colsCount)
+        .fill('')
+        // .map((_, col) => createCell(i, col))
+        .map(toCell(i))
+        .join('')
     rows.push(createRow(i + 1, cells))
   }
 
